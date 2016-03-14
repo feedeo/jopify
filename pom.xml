@@ -72,7 +72,6 @@
     <!-- Maven Plugins -->
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>2.12.4</maven-surefire-plugin.version>
-    <maven-failsafe-plugin.version>2.12.4</maven-failsafe-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -283,20 +282,9 @@
             <systemPropertyVariables>
               <java.awt.headless>true</java.awt.headless>
             </systemPropertyVariables>
-            <skipTests>true</skipTests>
           </configuration>
         </plugin>
 
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-failsafe-plugin</artifactId>
-          <version>${maven-failsafe-plugin.version}</version>
-          <configuration>
-            <systemPropertyVariables>
-              <java.awt.headless>true</java.awt.headless>
-            </systemPropertyVariables>
-          </configuration>
-        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -310,10 +298,6 @@
         <artifactId>maven-surefire-plugin</artifactId>
       </plugin>
 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-failsafe-plugin</artifactId>
-      </plugin>
     </plugins>
   </build>
 
