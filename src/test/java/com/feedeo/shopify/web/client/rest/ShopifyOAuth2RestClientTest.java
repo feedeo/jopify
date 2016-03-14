@@ -33,10 +33,10 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class ShopifyOAuth2RestClientTest {
 
-    @Test
-    public void shouldReturnSameInstance() {
-        ShopifyOAuth2RestClient target = ShopifyOAuth2RestClient.getInstance();
+  @Test
+  public void shouldReturnSameInstance() {
+    ShopifyOAuth2RestClient target = ShopifyOAuth2RestClient.getInstance();
 
-        assertThat(target).isSameAs(ShopifyOAuth2RestClient.getInstance());
-    }
+    assertThat(target).isSameAs(ShopifyOAuth2RestClient.getInstance());
+  }
 }

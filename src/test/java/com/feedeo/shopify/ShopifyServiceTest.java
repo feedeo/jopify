@@ -37,26 +37,26 @@ import static org.assertj.core.api.Assertions.assertThat;
 @RunWith(MockitoJUnitRunner.class)
 public class ShopifyServiceTest {
 
-    private ShopifyService target;
+  private ShopifyService target;
 
-    @Mock
-    private ShopifySession session;
+  @Mock
+  private ShopifySession session;
 
-    @Before
-    public void setUp() {
-        target = new ShopifyService();
-    }
+  @Before
+  public void setUp() {
+    target = new ShopifyService();
+  }
 
-    @Test
-    public void shouldGetShopWebServiceImplementationWithSession() {
-        ShopifyService.Service service = target.getService(session, ShopService.class);
+  @Test
+  public void shouldGetShopWebServiceImplementationWithSession() {
+    ShopifyService.Service service = target.getService(session, ShopService.class);
 
-        assertThat(service)
-                .isNotNull()
-                .isInstanceOf(ShopService.class)
-                .isExactlyInstanceOf(ShopWebServiceImpl.class);
+    assertThat(service)
+            .isNotNull()
+            .isInstanceOf(ShopService.class)
+            .isExactlyInstanceOf(ShopWebServiceImpl.class);
 
-        assertThat(service.getSession())
-                .isNotNull();
-    }
+    assertThat(service.getSession())
+            .isNotNull();
+  }
 }

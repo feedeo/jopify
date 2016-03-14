@@ -49,89 +49,89 @@ import static org.springframework.test.web.client.match.MockRestRequestMatchers.
 @RunWith(MockitoJUnitRunner.class)
 public class ShopifyOAuth2RestResourceTest {
 
-    private ShopifyOAuth2RestResource target;
+  private ShopifyOAuth2RestResource target;
 
-    private MockRestServiceServer mockServer;
+  private MockRestServiceServer mockServer;
 
-    @Before
-    public void setUp() {
-        target = new ShopOAuth2RestResource();
+  @Before
+  public void setUp() {
+    target = new ShopOAuth2RestResource();
 
-        RestTemplate restTemplate = (RestTemplate) target.getRestOperations();
+    RestTemplate restTemplate = (RestTemplate) target.getRestOperations();
 
-        mockServer = createServer(restTemplate);
+    mockServer = createServer(restTemplate);
+  }
+
+  @Test
+  public void shouldFailWithNotFoundResourceException() {
+    final String url = "https://my-shop.myshopify.com/admin/shop.json";
+
+    mockServer
+            .expect(requestTo(url))
+            .andExpect(method(GET))
+            .andRespond(ShopifyMockRestResponseCreators.withNotFound());
+
+    Throwable throwable = null;
+    try {
+      target.getRestOperationsWithAccessToken("my-access-token")
+              .getForEntity(url, Shop.class, "my-shop-name")
+              .getBody();
+    } catch (Throwable e) {
+      throwable = e;
+    } finally {
+      assertThat(throwable)
+              .hasCauseExactlyInstanceOf(NotFoundRestResourceException.class);
     }
 
-    @Test
-    public void shouldFailWithNotFoundResourceException() {
-        final String url = "https://my-shop.myshopify.com/admin/shop.json";
+    mockServer.verify();
+  }
 
-        mockServer
-                .expect(requestTo(url))
-                .andExpect(method(GET))
-                .andRespond(ShopifyMockRestResponseCreators.withNotFound());
+  @Test
+  public void shouldFailWithUnauthorizedAccessResourceException() {
+    final String url = "https://my-shop.myshopify.com/admin/shop.json";
 
-        Throwable throwable = null;
-        try {
-            target.getRestOperationsWithAccessToken("my-access-token")
-                    .getForEntity(url, Shop.class, "my-shop-name")
-                    .getBody();
-        } catch (Throwable e) {
-            throwable = e;
-        } finally {
-            assertThat(throwable)
-                    .hasCauseExactlyInstanceOf(NotFoundRestResourceException.class);
-        }
+    mockServer
+            .expect(requestTo(url))
+            .andExpect(method(GET))
+            .andRespond(ShopifyMockRestResponseCreators.withUnauthorized());
 
-        mockServer.verify();
+    Throwable throwable = null;
+    try {
+      target.getRestOperationsWithAccessToken("my-access-token")
+              .getForEntity(url, Shop.class, "my-shop-name")
+              .getBody();
+    } catch (Throwable e) {
+      throwable = e;
+    } finally {
+      assertThat(throwable)
+              .hasCauseExactlyInstanceOf(UnauthorizedAccessRestResourceException.class);
     }
 
-    @Test
-    public void shouldFailWithUnauthorizedAccessResourceException() {
-        final String url = "https://my-shop.myshopify.com/admin/shop.json";
+    mockServer.verify();
+  }
 
-        mockServer
-                .expect(requestTo(url))
-                .andExpect(method(GET))
-                .andRespond(ShopifyMockRestResponseCreators.withUnauthorized());
+  private abstract static class ShopifyMockRestResponseCreators {
 
-        Throwable throwable = null;
-        try {
-            target.getRestOperationsWithAccessToken("my-access-token")
-                    .getForEntity(url, Shop.class, "my-shop-name")
-                    .getBody();
-        } catch (Throwable e) {
-            throwable = e;
-        } finally {
-            assertThat(throwable)
-                    .hasCauseExactlyInstanceOf(UnauthorizedAccessRestResourceException.class);
-        }
+    private static final String BODY_NOT_FOUND = "{\"errors\": \"Not Found\"}";
+    private static final String BODY_UNAUTHORIZED = "{\"errors\": \"[API] Invalid API key or access token (unrecognized login or wrong password)\"}";
 
-        mockServer.verify();
+    public static DefaultResponseCreator withNotFound() {
+      return new ShopifyResponseCreator(NOT_FOUND).body(BODY_NOT_FOUND).contentType(APPLICATION_JSON);
     }
 
-    private abstract static class ShopifyMockRestResponseCreators {
 
-        private static final String BODY_NOT_FOUND = "{\"errors\": \"Not Found\"}";
-        private static final String BODY_UNAUTHORIZED = "{\"errors\": \"[API] Invalid API key or access token (unrecognized login or wrong password)\"}";
-
-        public static DefaultResponseCreator withNotFound() {
-            return new ShopifyResponseCreator(NOT_FOUND).body(BODY_NOT_FOUND).contentType(APPLICATION_JSON);
-        }
-
-
-        public static DefaultResponseCreator withUnauthorized() {
-            return new ShopifyResponseCreator(UNAUTHORIZED).body(BODY_UNAUTHORIZED).contentType(APPLICATION_JSON);
-        }
+    public static DefaultResponseCreator withUnauthorized() {
+      return new ShopifyResponseCreator(UNAUTHORIZED).body(BODY_UNAUTHORIZED).contentType(APPLICATION_JSON);
     }
+  }
 
-    /**
-     * Because {@code MockRestResponseCreators} is limited and {@code DefaultResponseCreator} constructor is protected.
-     */
-    private static class ShopifyResponseCreator extends DefaultResponseCreator {
+  /**
+   * Because {@code MockRestResponseCreators} is limited and {@code DefaultResponseCreator} constructor is protected.
+   */
+  private static class ShopifyResponseCreator extends DefaultResponseCreator {
 
-        protected ShopifyResponseCreator(HttpStatus statusCode) {
-            super(statusCode);
-        }
+    protected ShopifyResponseCreator(HttpStatus statusCode) {
+      super(statusCode);
     }
+  }
 }

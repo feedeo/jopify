@@ -96,7 +96,7 @@ public abstract class AbstractWebClient {
                     if (value != null && param.equalsIgnoreCase("timeout")) {
                         return Long.parseLong(value) * 1000;
                     }
-                }
+        }
                 return 5 * 1000;
             }
         };
@@ -130,7 +130,7 @@ public abstract class AbstractWebClient {
                         connectionManager.closeExpiredConnections();
                         connectionManager.closeIdleConnections(30, SECONDS);
                     }
-                }
+        }
             } catch (InterruptedException ignored) {
                 shutdown();
             }
@@ -142,6 +142,6 @@ public abstract class AbstractWebClient {
             synchronized (this) {
                 notifyAll();
             }
-        }
+    }
     }
 }
