@@ -3,6 +3,7 @@ Jopify: Shopify API Java Library
 [![][travis img]][travis]
 [![][release img]][release]
 [![][license img]][license]
+[![][codecov img]][codecov]
 
 [travis]:https://travis-ci.org/feedeo/jopify
 [travis img]:https://travis-ci.org/feedeo/jopify.svg?branch=master
@@ -12,3 +13,6 @@ Jopify: Shopify API Java Library
 
 [license]:LICENSE
 [license img]:https://img.shields.io/badge/license-MIT-blue.svg
+
+[codecov]:https://codecov.io/github/feedeo/jopify?branch=master
+[codecov img]:https://codecov.io/github/feedeo/jopify/coverage.svg?branch=master
