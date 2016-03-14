@@ -72,6 +72,7 @@
     <!-- Maven Plugins -->
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-surefire-plugin.version>2.12.4</maven-surefire-plugin.version>
+    <jacoco-maven-plugin.version>0.7.5.201505241946</jacoco-maven-plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -285,6 +286,26 @@
           </configuration>
         </plugin>
 
+        <plugin>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>${jacoco-maven-plugin.version}</version>
+          <executions>
+            <execution>
+              <goals>
+                <goal>prepare-agent</goal>
+              </goals>
+            </execution>
+            <execution>
+              <id>report</id>
+              <phase>test</phase>
+              <goals>
+                <goal>report</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+
       </plugins>
     </pluginManagement>
     <plugins>
@@ -298,6 +319,10 @@
         <artifactId>maven-surefire-plugin</artifactId>
       </plugin>
 
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+      </plugin>
     </plugins>
   </build>
 
