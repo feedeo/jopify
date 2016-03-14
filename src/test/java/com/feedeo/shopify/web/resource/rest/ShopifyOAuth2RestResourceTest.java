@@ -119,7 +119,6 @@ public class ShopifyOAuth2RestResourceTest {
       return new ShopifyResponseCreator(NOT_FOUND).body(BODY_NOT_FOUND).contentType(APPLICATION_JSON);
     }
 
-
     public static DefaultResponseCreator withUnauthorized() {
       return new ShopifyResponseCreator(UNAUTHORIZED).body(BODY_UNAUTHORIZED).contentType(APPLICATION_JSON);
     }

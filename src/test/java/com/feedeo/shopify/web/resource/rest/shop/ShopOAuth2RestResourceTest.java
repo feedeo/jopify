@@ -153,5 +153,4 @@ public class ShopOAuth2RestResourceTest {
     assertThat(shop.getSetupRequired()).isEqualTo(false);
   }
 
-
 }
