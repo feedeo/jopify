@@ -28,4 +28,8 @@ public abstract class ShopifyException extends Exception {
   public ShopifyException(String message) {
     super(message);
   }
+
+  public ShopifyException(Throwable cause) {
+    super(cause);
+  }
 }

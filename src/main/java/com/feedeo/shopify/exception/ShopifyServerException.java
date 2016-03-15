@@ -24,8 +24,12 @@
 
 package com.feedeo.shopify.exception;
 
-public abstract class ShopifyServerException extends ShopifyException {
+public class ShopifyServerException extends ShopifyException {
   public ShopifyServerException(String message) {
     super(message);
+  }
+
+  public ShopifyServerException(Throwable cause) {
+    super(cause);
   }
 }

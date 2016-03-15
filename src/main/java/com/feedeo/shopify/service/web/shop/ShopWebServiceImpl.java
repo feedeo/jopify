@@ -37,6 +37,6 @@ public class ShopWebServiceImpl extends AbstractWebService implements ShopServic
 
   @Override
   public Shop getShop() {
-    return ((ShopWebResource) resource).getByShopName(session.getShopName(), session.getoAuth2AccessToken());
+    return ((ShopWebResource) resource).getByShopName(session.getoAuth2AccessToken(), session.getShopName());
   }
 }

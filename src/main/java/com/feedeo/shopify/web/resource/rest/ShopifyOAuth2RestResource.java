@@ -26,6 +26,7 @@ package com.feedeo.shopify.web.resource.rest;
 
 import com.feedeo.rest.client.AbstractOAuth2RestClient;
 import com.feedeo.rest.client.AbstractRestClient;
+import com.feedeo.shopify.exception.ShopifyServerException;
 import com.feedeo.shopify.exception.web.resource.rest.RestResourceException;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.security.oauth2.client.OAuth2RestOperations;
@@ -68,7 +69,7 @@ public class ShopifyOAuth2RestResource implements OAuth2RestResource {
     public void handleError(ClientHttpResponse response) throws IOException {
       try {
         super.handleError(response);
-      } catch (HttpClientErrorException | HttpServerErrorException e) {
+      } catch (HttpClientErrorException e) {
         if (e.getResponseBodyAsString() == null) {
           throw e;
         }
@@ -84,6 +85,10 @@ public class ShopifyOAuth2RestResource implements OAuth2RestResource {
         }
 
         propagate(resourceException);
+
+      } catch (HttpServerErrorException e) {
+
+        propagate(new ShopifyServerException(e));
       }
     }
   }

@@ -57,6 +57,6 @@ public class ShopWebServiceImplTest {
 
         target.getShop();
 
-        verify(resource, times(1)).getByShopName(eq(shopName), eq(oAuth2AccessToken));
+        verify(resource, times(1)).getByShopName(eq(oAuth2AccessToken), eq(shopName));
     }
 }
