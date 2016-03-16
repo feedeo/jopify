@@ -5,6 +5,8 @@ Jopify: Shopify API Java Library
 [![][license img]][license]
 [![][codecov img]][codecov]
 
+Installation
+======
 Add the dependency to your `dependencies` block in your `pom.xml`
 ```xml
 <dependency>
@@ -14,8 +16,10 @@ Add the dependency to your `dependencies` block in your `pom.xml`
 </dependency>
 ```
 
+Usage :shipit:
+======
+Create a session from an OAuth 2.0 access token and the shop name and instantiate the desired API service.
 ```java
-
 import com.feedeo.shopify.*;
 
 String oAuth2AccessToken = "my-oauth2-access-token";
@@ -26,13 +30,66 @@ ShopifySession session = new ShopifySession.Builder()
   .withShopName(shopName)
   .build();
 
-
 ShopifyService shopifyService = new ShopifyService();
 ShopService shopService = shopifyService.getService(session, ShopService.class);
 
 Shop shop = shopService.getShop();
 
 ```
+
+Supported API services
+==
+As of now it only supports a limited number of API services.
+
+~~Application proxies~~
+~~ApplicationCharge~~
+~~Article~~
+~~Asset~~
+~~Blog~~
+~~CarrierService~~
+~~Checkout~~
+~~Collect~~
+~~Comment~~
+~~Country~~
+~~CustomCollection~~
+~~Customer~~
+~~CustomerAddress~~
+~~CustomerSavedSearch~~
+~~Discount~~
+~~Event~~
+~~Fulfillment~~
+~~FulfillmentEvent~~
+~~FulfillmentService~~
+~~Gift Card~~
+~~Location~~
+~~Metafield~~
+~~Multipass~~
+~~Order~~
+~~Order Risks~~
+~~Page~~
+~~Policy~~
+~~Product~~
+~~Product Image~~
+~~Product Variant~~
+~~Province~~
+~~RecurringApplicationCharge~~
+~~Redirect~~
+~~Refund~~
+~~ScriptTag~~
+~~Shipping Zone~~
+Shop :white_check_mark:
+~~SmartCollection~~
+~~Theme~~
+~~Transaction~~
+~~User~~
+~~Webhook~~
+
+Java Docs
+==
+
+Reference
+======
+https://docs.shopify.com/api/reference
 
 [travis]:https://travis-ci.org/feedeo/jopify
 [travis img]:https://travis-ci.org/feedeo/jopify.svg?branch=master
