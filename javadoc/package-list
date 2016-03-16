@@ -1,0 +1,14 @@
+com.feedeo.rest.client
+com.feedeo.shopify
+com.feedeo.shopify.constant
+com.feedeo.shopify.exception
+com.feedeo.shopify.exception.web.resource.rest
+com.feedeo.shopify.model
+com.feedeo.shopify.service
+com.feedeo.shopify.service.web
+com.feedeo.shopify.service.web.shop
+com.feedeo.shopify.web.client.rest
+com.feedeo.shopify.web.resource
+com.feedeo.shopify.web.resource.rest
+com.feedeo.shopify.web.resource.rest.shop
+com.feedeo.web.client
