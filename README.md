@@ -1,13 +1,11 @@
-Jopify: Shopify API Java Library
-=======
+# Jopify: Shopify API Java Library
 [![][travis img]][travis]
 [![][release img]][release]
 [![][license img]][license]
 [![][codecov img]][codecov]
 
-Installation
-======
-Add the dependency to your `dependencies` block in your `pom.xml`
+## Installation
+Add `jopify` to your `dependencies` block in your `pom.xml`
 ```xml
 <dependency>
   <groupId>com.feedeo</groupId>
@@ -16,9 +14,8 @@ Add the dependency to your `dependencies` block in your `pom.xml`
 </dependency>
 ```
 
-Usage :shipit:
-======
-Create a session from an OAuth 2.0 access token and the shop name and instantiate the desired API service.
+## Usage :shipit:
+Build a `ShopifySession` from an OAuth 2.0 access token and the shop name. Then instantiate the desired API service through `ShopifyService`.
 ```java
 import com.feedeo.shopify.*;
 
@@ -31,65 +28,25 @@ ShopifySession session = new ShopifySession.Builder()
   .build();
 
 ShopifyService shopifyService = new ShopifyService();
+
 ShopService shopService = shopifyService.getService(session, ShopService.class);
 
-Shop shop = shopService.getShop();
-
+try {
+  Shop shop = shopService.getShop();
+} catch (ShopifyException e) {
+    e.printStackTrace();
+}
 ```
 
-Supported API services
-==
+## Limitations
 As of now it only supports a limited number of API services.
 
-~~Application proxies~~
-~~ApplicationCharge~~
-~~Article~~
-~~Asset~~
-~~Blog~~
-~~CarrierService~~
-~~Checkout~~
-~~Collect~~
-~~Comment~~
-~~Country~~
-~~CustomCollection~~
-~~Customer~~
-~~CustomerAddress~~
-~~CustomerSavedSearch~~
-~~Discount~~
-~~Event~~
-~~Fulfillment~~
-~~FulfillmentEvent~~
-~~FulfillmentService~~
-~~Gift Card~~
-~~Location~~
-~~Metafield~~
-~~Multipass~~
-~~Order~~
-~~Order Risks~~
-~~Page~~
-~~Policy~~
-~~Product~~
-~~Product Image~~
-~~Product Variant~~
-~~Province~~
-~~RecurringApplicationCharge~~
-~~Redirect~~
-~~Refund~~
-~~ScriptTag~~
-~~Shipping Zone~~
-Shop :white_check_mark:
-~~SmartCollection~~
-~~Theme~~
-~~Transaction~~
-~~User~~
-~~Webhook~~
+[Shop](https://docs.shopify.com/api/reference/shop) :white_check_mark:
 
-Java Docs
-==
+## Documentation
 
-Reference
-======
-https://docs.shopify.com/api/reference
+## Reference
+[Shopify API reference](https://docs.shopify.com/api/reference)
 
 [travis]:https://travis-ci.org/feedeo/jopify
 [travis img]:https://travis-ci.org/feedeo/jopify.svg?branch=master
