@@ -44,7 +44,7 @@ As of now it only supports a limited number of API services.
 [Shop](https://docs.shopify.com/api/reference/shop) :white_check_mark:
 
 ## Documentation
-Seet the [Javadoc](http://feedeo.github.io/jopify/javadoc/) for the library API.
+See the [Javadoc](http://feedeo.github.io/jopify/javadoc/) for the library API.
 
 ## Reference
 [Shopify API reference](https://docs.shopify.com/api/reference)
