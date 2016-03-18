@@ -36,7 +36,9 @@ public class ShopOAuth2RestResource extends ShopifyOAuth2RestResource implements
   @Override
   public Shop getByShopName(String accessToken, String shopName) {
     return getRestOperationsWithAccessToken(accessToken)
-            .getForEntity(BASE_URL + SHOP_ENDPOINT, Shop.class, shopName)
-            .getBody();
+            .getForEntity(BASE_URL + SHOP_ENDPOINT, ShopOAuth2RestResourceResponse.class, shopName)
+            .getBody()
+            .getShop();
   }
+
 }

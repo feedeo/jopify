@@ -43,7 +43,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.READ_ENUMS_USING_TO_STRING;
-import static com.fasterxml.jackson.databind.DeserializationFeature.UNWRAP_ROOT_VALUE;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_ENUMS_USING_TO_STRING;
 import static java.util.TimeZone.getDefault;
@@ -75,7 +74,6 @@ public abstract class AbstractRestClient extends AbstractWebClient {
     objectMapper.configure(WRITE_DATES_AS_TIMESTAMPS, true);
     objectMapper.configure(WRITE_ENUMS_USING_TO_STRING, true);
     objectMapper.configure(READ_ENUMS_USING_TO_STRING, true);
-    objectMapper.configure(UNWRAP_ROOT_VALUE, true);
 
     objectMapper.registerModule(new JodaModule());
 

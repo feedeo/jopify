@@ -67,7 +67,7 @@ public class ShopifyService {
           InstantiationException, NoSuchMethodException, InvocationTargetException {
 
     String classImplementationSimpleName = serviceSimpleName + "WebServiceImpl";
-    String className = this.getClass().getPackage().getName() +
+    String className = ShopifyService.class.getPackage().getName() +
             ".service.web." +
             serviceSimpleName.toLowerCase() +
             "." +
@@ -82,7 +82,7 @@ public class ShopifyService {
           InstantiationException, NoSuchMethodException, InvocationTargetException {
 
     String classImplementationSimpleName = serviceName + "OAuth2RestResource";
-    String className = this.getClass().getPackage().getName() +
+    String className = ShopifyService.class.getPackage().getName() +
             ".web.resource.rest." +
             serviceName.toLowerCase() +
             "." +

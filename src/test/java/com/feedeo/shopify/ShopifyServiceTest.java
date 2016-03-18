@@ -24,7 +24,9 @@
 
 package com.feedeo.shopify;
 
+import com.feedeo.shopify.service.ProductService;
 import com.feedeo.shopify.service.ShopService;
+import com.feedeo.shopify.service.web.product.ProductWebServiceImpl;
 import com.feedeo.shopify.service.web.shop.ShopWebServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
@@ -55,6 +57,19 @@ public class ShopifyServiceTest {
             .isNotNull()
             .isInstanceOf(ShopService.class)
             .isExactlyInstanceOf(ShopWebServiceImpl.class);
+
+    assertThat(service.getSession())
+            .isNotNull();
+  }
+
+  @Test
+  public void shouldGetProductWebServiceImplementationWithSession() {
+    ShopifyService.Service service = target.getService(session, ProductService.class);
+
+    assertThat(service)
+            .isNotNull()
+            .isInstanceOf(ProductService.class)
+            .isExactlyInstanceOf(ProductWebServiceImpl.class);
 
     assertThat(service.getSession())
             .isNotNull();

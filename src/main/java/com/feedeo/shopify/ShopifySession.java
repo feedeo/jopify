@@ -24,6 +24,8 @@
 
 package com.feedeo.shopify;
 
+import com.google.common.base.Objects;
+
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
 
@@ -42,6 +44,20 @@ public class ShopifySession {
 
   public String getoAuth2AccessToken() {
     return oAuth2AccessToken;
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (!(o instanceof ShopifySession)) return false;
+    ShopifySession that = (ShopifySession) o;
+    return Objects.equal(shopName, that.shopName) &&
+            Objects.equal(oAuth2AccessToken, that.oAuth2AccessToken);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hashCode(shopName, oAuth2AccessToken);
   }
 
   public static class Builder {

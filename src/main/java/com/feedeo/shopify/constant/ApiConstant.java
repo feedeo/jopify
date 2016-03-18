@@ -28,4 +28,8 @@ public class ApiConstant {
   public static final String BASE_URL = "https://{shop}.myshopify.com";
 
   public static final String SHOP_ENDPOINT = "/admin/shop.json";
+
+  public static final String PRODUCT_ENDPOINT = "/admin/products.json";
+
+  public static final String PRODUCT_COUNT_ENDPOINT = "/admin/products/count.json";
 }
