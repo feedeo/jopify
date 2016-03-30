@@ -5,7 +5,7 @@
 [![][codecov img]][codecov]
 
 ## Features
-* __API call rate limiter__ - complies with Shopify _leaky bucket_ algorithm with a _leak rate_ of 2 calls per second .
+* __API call rate limiter__ - complies with Shopify _leaky bucket_ algorithm with a _leak rate_ of 2 calls per second (no 429's coming your way :v:).
 
 ## Installation
 Add `jopify` to your `dependencies` block in your `pom.xml`.
