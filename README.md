@@ -4,13 +4,16 @@
 [![][license img]][license]
 [![][codecov img]][codecov]
 
+## Features
+* __API call rate limiter__ - complies with Shopify _leaky bucket_ algorithm with a _leak rate_ of 2 calls per second .
+
 ## Installation
 Add `jopify` to your `dependencies` block in your `pom.xml`.
 ```xml
 <dependency>
   <groupId>com.feedeo</groupId>
   <artifactId>jopify</artifactId>
-  <version>0.1.0</version>
+  <version>0.2.0</version>
 </dependency>
 ```
 
