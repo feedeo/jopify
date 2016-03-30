@@ -16,6 +16,9 @@ public class ProductWebServiceImpl extends AbstractWebService implements Product
 
   @Override
   public long getCount() {
-    return ((ProductWebResource) resource).getCount(session.getoAuth2AccessToken(), session.getShopName());
+    ShopifySession session = this.acquireSession();
+    ProductWebResource resource = (ProductWebResource) this.getResource();
+
+    return resource.getCount(session.getoAuth2AccessToken(), session.getShopName());
   }
 }

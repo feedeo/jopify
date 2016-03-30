@@ -27,13 +27,18 @@ package com.feedeo.shopify.service.web;
 import com.feedeo.shopify.ShopifySession;
 import com.feedeo.shopify.web.resource.WebResource;
 
-public abstract class AbstractWebService implements WebService {
-  protected ShopifySession session;
-  protected WebResource resource;
+public abstract class AbstractWebService implements RateLimitableService {
+  private ShopifySession session;
+  private WebResource resource;
 
   protected AbstractWebService(ShopifySession session, WebResource resource) {
     this.session = session;
     this.resource = resource;
+  }
+
+  @Override
+  public ShopifySession acquireSession() {
+    return session.acquire();
   }
 
   @Override

@@ -38,25 +38,27 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class ShopWebServiceImplTest {
 
-    @InjectMocks
-    private ShopWebServiceImpl target;
+  @InjectMocks
+  private ShopWebServiceImpl target;
 
-    @Mock
-    private ShopifySession session;
+  @Mock
+  private ShopifySession session;
 
-    @Mock
-    private ShopWebResource resource;
+  @Mock
+  private ShopWebResource resource;
 
-    @Test
-    public void shouldInvokeShopWebResourceWithShopNameAndOAuth2AccessToken() {
-        String shopName = "my-shop-name";
-        String oAuth2AccessToken = "my-oauth2-access-token";
+  @Test
+  public void shouldInvokeShopWebResourceWithShopNameAndOAuth2AccessToken() {
+    String shopName = "my-shop-name";
+    String oAuth2AccessToken = "my-oauth2-access-token";
 
-        when(session.getShopName()).thenReturn(shopName);
-        when(session.getoAuth2AccessToken()).thenReturn(oAuth2AccessToken);
+    when(session.getShopName()).thenReturn(shopName);
+    when(session.getoAuth2AccessToken()).thenReturn(oAuth2AccessToken);
+    when(session.acquire()).thenReturn(session);
 
-        target.getShop();
+    target.getShop();
 
-        verify(resource, times(1)).getByShopName(eq(oAuth2AccessToken), eq(shopName));
-    }
+    verify(resource, times(1)).getByShopName(eq(oAuth2AccessToken), eq(shopName));
+    verify(session, times(1)).acquire();
+  }
 }

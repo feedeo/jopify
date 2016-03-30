@@ -25,17 +25,21 @@
 package com.feedeo.shopify;
 
 import com.google.common.base.Objects;
+import com.google.common.util.concurrent.RateLimiter;
 
 import static com.google.common.base.Preconditions.checkArgument;
 import static com.google.common.base.Strings.isNullOrEmpty;
+import static com.google.common.util.concurrent.RateLimiter.create;
 
 public class ShopifySession {
   private String shopName;
   private String oAuth2AccessToken;
+  private RateLimiter rateLimiter;
 
   public ShopifySession(Builder builder) {
     this.shopName = builder.shopName;
     this.oAuth2AccessToken = builder.oAuth2AccessToken;
+    this.rateLimiter = create(builder.rateLimit);
   }
 
   public String getShopName() {
@@ -44,6 +48,16 @@ public class ShopifySession {
 
   public String getoAuth2AccessToken() {
     return oAuth2AccessToken;
+  }
+
+  public ShopifySession acquire() {
+    rateLimiter.acquire();
+
+    return this;
+  }
+
+  public double getRateLimit() {
+    return rateLimiter.getRate();
   }
 
   @Override
@@ -63,6 +77,7 @@ public class ShopifySession {
   public static class Builder {
     private String shopName;
     private String oAuth2AccessToken;
+    private Double rateLimit;
 
     public Builder() {
     }
@@ -77,9 +92,18 @@ public class ShopifySession {
       return this;
     }
 
+    public Builder withRateLimit(double rateLimit) {
+      this.rateLimit = rateLimit;
+      return this;
+    }
+
     public ShopifySession build() {
       checkArgument(!isNullOrEmpty(shopName));
       checkArgument(!isNullOrEmpty(oAuth2AccessToken));
+
+      if (rateLimit == null) {
+        rateLimit = 2.0;
+      }
 
       return new ShopifySession(this);
     }

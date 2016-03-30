@@ -39,14 +39,17 @@ public class ShopifySessionTest {
   public void shouldBuildSession() {
     final String shopName = "my-shop-name";
     final String oAuth2AccessToken = "my-oauth2-access-token";
+    final double rateLimit = 1.0;
 
     target = new ShopifySession.Builder()
             .withShopName(shopName)
             .withOAuth2AccessToken(oAuth2AccessToken)
+            .withRateLimit(rateLimit)
             .build();
 
     assertThat(target.getShopName()).isEqualTo(shopName);
     assertThat(target.getoAuth2AccessToken()).isEqualTo(oAuth2AccessToken);
+    assertThat(target.getRateLimit()).isEqualTo(rateLimit);
   }
 
   @Test(expected = IllegalArgumentException.class)
