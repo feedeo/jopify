@@ -48,9 +48,9 @@ public class ShopWebServiceImplTest {
   private ShopWebResource resource;
 
   @Test
-  public void shouldInvokeShopWebResourceWithShopNameAndOAuth2AccessToken() {
-    String shopName = "my-shop-name";
+  public void shouldInvokeShopWebResourceWithOAuth2AccessTokenAndShopName() {
     String oAuth2AccessToken = "my-oauth2-access-token";
+    String shopName = "my-shop-name";
 
     when(session.getShopName()).thenReturn(shopName);
     when(session.getoAuth2AccessToken()).thenReturn(oAuth2AccessToken);
@@ -58,7 +58,7 @@ public class ShopWebServiceImplTest {
 
     target.getShop();
 
-    verify(resource, times(1)).getByShopName(eq(oAuth2AccessToken), eq(shopName));
+    verify(resource, times(1)).getShop(eq(oAuth2AccessToken), eq(shopName));
     verify(session, times(1)).acquire();
   }
 }

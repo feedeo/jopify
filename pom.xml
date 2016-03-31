@@ -47,6 +47,9 @@
     <!-- Spring Framework -->
     <spring.version>4.1.6.RELEASE</spring.version>
 
+    <!-- Spring Data Framework -->
+    <spring-data-commons.version>1.9.2.RELEASE</spring-data-commons.version>
+
     <!-- Spring Security -->
     <spring-security-oauth.version>2.0.9.RELEASE</spring-security-oauth.version>
 
@@ -87,6 +90,13 @@
         <groupId>org.springframework</groupId>
         <artifactId>spring-test</artifactId>
         <version>${spring.version}</version>
+      </dependency>
+
+      <!-- Spring Data Framework -->
+      <dependency>
+        <groupId>org.springframework.data</groupId>
+        <artifactId>spring-data-commons</artifactId>
+        <version>${spring-data-commons.version}</version>
       </dependency>
 
       <!-- Spring Security Framework -->
@@ -179,6 +189,12 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-test</artifactId>
+    </dependency>
+
+    <!-- Spring Data Framework -->
+    <dependency>
+      <groupId>org.springframework.data</groupId>
+      <artifactId>spring-data-commons</artifactId>
     </dependency>
 
     <!-- Spring Security Framework -->

@@ -29,7 +29,7 @@ public class ApiConstant {
 
   public static final String SHOP_ENDPOINT = "/admin/shop.json";
 
-  public static final String PRODUCT_ENDPOINT = "/admin/products.json";
+  public static final String PRODUCT_ENDPOINT = "/admin/products.json?page={page}&limit={limit}&fields={fields}";
 
   public static final String PRODUCT_COUNT_ENDPOINT = "/admin/products/count.json";
 }

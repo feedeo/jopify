@@ -40,6 +40,6 @@ public class ShopWebServiceImpl extends AbstractWebService implements ShopServic
     ShopifySession session = this.acquireSession();
     ShopWebResource resource = (ShopWebResource) this.getResource();
 
-    return resource.getByShopName(session.getoAuth2AccessToken(), session.getShopName());
+    return resource.getShop(session.getoAuth2AccessToken(), session.getShopName());
   }
 }

@@ -34,7 +34,7 @@ import static com.feedeo.shopify.constant.ApiConstant.SHOP_ENDPOINT;
 public class ShopOAuth2RestResource extends ShopifyOAuth2RestResource implements ShopWebResource {
 
   @Override
-  public Shop getByShopName(String accessToken, String shopName) {
+  public Shop getShop(String accessToken, String shopName) {
     return getRestOperationsWithAccessToken(accessToken)
             .getForEntity(BASE_URL + SHOP_ENDPOINT, ShopOAuth2RestResourceResponse.class, shopName)
             .getBody()

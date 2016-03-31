@@ -78,6 +78,7 @@ public abstract class AbstractOAuth2RestClient extends AbstractRestClient {
     RestTemplate restTemplate = (RestTemplate) super.createRestOperations(objectMapper, clientHttpRequestFactory);
 
     OAuth2RestTemplate oAuth2RestTemplate = new OAuth2RestTemplate(new BaseOAuth2ProtectedResourceDetails(), new DefaultOAuth2ClientContext());
+    oAuth2RestTemplate.setRequestFactory(restTemplate.getRequestFactory());
     oAuth2RestTemplate.setMessageConverters(restTemplate.getMessageConverters());
     oAuth2RestTemplate.setInterceptors(restTemplate.getInterceptors());
 

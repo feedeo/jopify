@@ -108,7 +108,7 @@ public class ShopOAuth2RestResourceTest {
             .andExpect(method(GET))
             .andRespond(withSuccess(responseOk, APPLICATION_JSON));
 
-    Shop shop = target.getByShopName("my-access-token", "my-shop");
+    Shop shop = target.getShop("my-access-token", "my-shop");
 
     mockServer.verify();
 
