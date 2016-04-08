@@ -44,8 +44,8 @@ try {
 ## Limitations
 As of now it only supports a limited number of API services.
 
-[Shop](https://docs.shopify.com/api/reference/shop) :white_check_mark:
-[Product](https://docs.shopify.com/api/reference/product) :white_check_mark:
+* [Shop](https://docs.shopify.com/api/reference/shop) :white_check_mark:
+* [Product](https://docs.shopify.com/api/reference/product) :white_check_mark:
 
 ## Documentation
 See the [Javadoc](http://feedeo.github.io/jopify/javadoc/) for the library API.
