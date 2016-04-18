@@ -35,7 +35,7 @@ public class ProductOAuth2RestResource extends ShopifyOAuth2RestResource impleme
             .getForEntity(BASE_URL + PRODUCT_ENDPOINT, ProductsOAuth2RestResourceResponse.class,
                     shopName,
                     pageable.getPageNumber() + 1, // Shopify pages start at index 1
-                    pageable.getPageSize(),
+                    pageable.getPageSize(), // Shopify does not seem to allow a limit of ~512
                     on(",").skipNulls().join(select)
             )
             .getBody()
