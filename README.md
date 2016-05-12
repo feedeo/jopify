@@ -13,7 +13,7 @@ Add `jopify` to your `dependencies` block in your `pom.xml`.
 <dependency>
   <groupId>com.feedeo</groupId>
   <artifactId>jopify</artifactId>
-  <version>0.2.0</version>
+  <version>0.2.1</version>
 </dependency>
 ```
 

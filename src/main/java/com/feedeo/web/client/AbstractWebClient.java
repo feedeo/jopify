@@ -67,9 +67,9 @@ public abstract class AbstractWebClient {
 
         final RequestConfig requestConfig = RequestConfig
                 .custom()
-                .setConnectionRequestTimeout(5000)
-                .setConnectTimeout(5000)
-                .setSocketTimeout(5000)
+                .setConnectionRequestTimeout(30000)
+                .setConnectTimeout(30000)
+                .setSocketTimeout(30000)
                 .setStaleConnectionCheckEnabled(false)
                 .build();
 
